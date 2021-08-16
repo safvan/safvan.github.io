@@ -1,0 +1,642 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>ME2090 Kinematics of Mechanisms</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="e5c4453c-4228-4813-afd2-1ab86255e9e5" class="page sans"><header><h1 class="page-title">ME2090 Kinematics of Mechanisms</h1></header><div class="page-body"><div id="146828db-aec4-4b2d-860c-84fd2597ad56" class="column-list"><div id="e41f96e0-3821-4ee0-9912-3a1c22ed1043" style="width:56.25%" class="column"><figure id="5594f614-b810-476c-b530-e7d733862a12" class="image"><a href="ME2090%20Kinematics%20of%20Mechanisms%205594f614b810476cb530e7d733862a12/kinematics_paper_clip.jpeg"><img style="width:432px" src="ME2090%20Kinematics%20of%20Mechanisms%205594f614b810476cb530e7d733862a12/kinematics_paper_clip.jpeg"/></a></figure><p id="d79d55e8-b517-4a28-b26d-f1071c8a18f0" class="">
+</p><h1 id="20f8e636-adaf-44df-b9db-e420a556b4cb" class="">Coursework</h1></div><div id="3554e9f1-9da0-42bf-b4de-b7bcd2a10e5a" style="width:43.75000000000001%" class="column"><p id="af0fb917-db3c-4bad-a5b0-7e1fbdf576a2" class=""><strong>Instructor: Safvan Palathingal</strong></p><p id="89607371-5283-486e-902c-f5bc6ba521d2" class=""><strong>Office:</strong> 208-H/C</p><p id="638c32c1-9925-408b-84bb-ece3cf212c42" class=""><strong>Office hours:</strong> </p><p id="19a36312-3db1-4cb1-a6a1-107741936a06" class=""><strong>Email:</strong> safvan [@] mae [dot] <a href="http://iith.ac.in/">iith.ac.in</a> </p><p id="ba78ecdd-68d0-48d9-b4a1-d947bcc8c359" class="block-color-purple"><strong>Lectures (online):</strong> 
+12:00-12:55pm, 4:00-5:25pm, <strong>Monday</strong>
+2:30-3:55pm,<strong> Thursday</strong></p><p id="0ed59eee-7ca7-4e41-9dc2-fbc517b1c76c" class="block-color-purple">
+</p></div></div><h3 id="e15df6c0-4587-4df1-898f-a87509754a1d" class="">🏆Grading </h3><blockquote id="52bc18d4-578b-4c1d-9e81-632c8d19532c" class="block-color-blue"><strong>Assignments (3) 20</strong>%     <strong><mark class="highlight-brown">Quiz (3) 45</mark></strong><mark class="highlight-brown">%</mark><strong>    </strong><strong><mark class="highlight-orange">Project 35%</mark></strong></blockquote><h3 id="e0e43daa-5719-4878-9b7e-f15670a1ed8a" class="">🗒Syllabus</h3><ul id="5e468d90-787d-48b2-aeb7-8bebd2d5ea82" class="bulleted-list"><li>Definitions - mobility and degrees of freedom, kinematic pairs, kinematic chains, mechanisms and machines</li></ul><ul id="7f248b9d-e857-416a-b427-3b4766b67b9b" class="bulleted-list"><li>Inversions of kinematic chains; Kennedy’s theorem; instantaneous center of rotation</li></ul><ul id="d0039bdb-3e89-4af8-8c2c-c08802c9df5f" class="bulleted-list"><li>Position, velocity and acceleration analysis - graphical and analytical</li></ul><ul id="792d5d17-c3ee-4f93-947e-a6507e60aaf3" class="bulleted-list"><li>Synthesis of mechanisms; cams - translating knife edge, roller and flat face followers, offset</li></ul><ul id="d439b33a-1906-45de-bc12-9d978d3c5357" class="bulleted-list"><li>Gears - terminology, fundamental law of gearing; involute profile, interference, undercutting, minimum number of teeth, contact ratio; bevel gears, helical gears, worm gears; gear trains - simple, compound, and epicyclic.</li></ul><figure id="754ad33e-4cab-424c-a25e-96cf422f8fc8" class="image"><a href="ME2090%20Kinematics%20of%20Mechanisms%205594f614b810476cb530e7d733862a12/Untitled.png"><img style="width:1px" src="ME2090%20Kinematics%20of%20Mechanisms%205594f614b810476cb530e7d733862a12/Untitled.png"/></a></figure><figure id="895675cc-2203-423d-856c-b809221614eb" class="image"><a href="ME2090%20Kinematics%20of%20Mechanisms%205594f614b810476cb530e7d733862a12/Untitled%201.png"><img style="width:1px" src="ME2090%20Kinematics%20of%20Mechanisms%205594f614b810476cb530e7d733862a12/Untitled%201.png"/></a></figure><div id="d70357b8-0abe-4da4-bb0d-725920ead3d6" class="collection-content"><h4 class="collection-title">⏳Schedule</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Name</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesDate"><path d="M10.8889,5.5 L3.11111,5.5 L3.11111,7.05556 L10.8889,7.05556 L10.8889,5.5 Z M12.4444,1.05556 L11.6667,1.05556 L11.6667,0 L10.1111,0 L10.1111,1.05556 L3.88889,1.05556 L3.88889,0 L2.33333,0 L2.33333,1.05556 L1.55556,1.05556 C0.692222,1.05556 0.00777777,1.75556 0.00777777,2.61111 L0,12.5 C0,13.3556 0.692222,14 1.55556,14 L12.4444,14 C13.3,14 14,13.3556 14,12.5 L14,2.61111 C14,1.75556 13.3,1.05556 12.4444,1.05556 Z M12.4444,12.5 L1.55556,12.5 L1.55556,3.94444 L12.4444,3.94444 L12.4444,12.5 Z M8.55556,8.61111 L3.11111,8.61111 L3.11111,10.1667 L8.55556,10.1667 L8.55556,8.61111 Z"></path></svg></span>Dates</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesMultipleSelect"><path d="M4,3 C4,2.447715 4.447715,2 5,2 L12,2 C12.5523,2 13,2.447716 13,3 C13,3.55228 12.5523,4 12,4 L5,4 C4.447715,4 4,3.55228 4,3 Z M4,7 C4,6.447715 4.447715,6 5,6 L12,6 C12.5523,6 13,6.447716 13,7 C13,7.55228 12.5523,8 12,8 L5,8 C4.447715,8 4,7.55228 4,7 Z M4,11 C4,10.447715 4.447715,10 5,10 L12,10 C12.5523,10 13,10.447716 13,11 C13,11.55228 12.5523,12 12,12 L5,12 C4.447715,12 4,11.55228 4,11 Z M2,4 C1.44771525,4 1,3.55228475 1,3 C1,2.44771525 1.44771525,2 2,2 C2.55228475,2 3,2.44771525 3,3 C3,3.55228475 2.55228475,4 2,4 Z M2,8 C1.44771525,8 1,7.55228475 1,7 C1,6.44771525 1.44771525,6 2,6 C2.55228475,6 3,6.44771525 3,7 C3,7.55228475 2.55228475,8 2,8 Z M2,12 C1.44771525,12 1,11.5522847 1,11 C1,10.4477153 1.44771525,10 2,10 C2.55228475,10 3,10.4477153 3,11 C3,11.5522847 2.55228475,12 2,12 Z"></path></svg></span>Topic</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>Type</th></tr></thead><tbody><tr id="c00dfa80-32f5-4fd6-86bb-a0bb17d54ec8"><td class="cell-title"><a href="https://www.notion.so/Week-1-c00dfa8032f54fd686bba0bb17d54ec8"><span class="icon">📒</span>Week 1</a></td><td class="cell-0#}p"><time>@January 11, 2021 → January 17, 2021</time></td><td class="cell-v&lt;K]"><span class="selected-value select-value-color-pink">DoFs</span><span class="selected-value select-value-color-default">Kinematic inversions</span><span class="selected-value select-value-color-red">Kinematic pairs</span><span class="selected-value select-value-color-green">Links</span></td><td class="cell-ysX^"><span class="selected-value select-value-color-yellow">📒 Lecture</span></td></tr><tr id="fc336548-7d0e-4115-b196-48d33c483a5b"><td class="cell-title"><a href="https://www.notion.so/Week-2-fc3365487d0e4115b19648d33c483a5b"><span class="icon">📒</span>Week 2</a></td><td class="cell-0#}p"><time>@January 18, 2021 → January 24, 2021</time></td><td class="cell-v&lt;K]"><span class="selected-value select-value-color-purple">(non) Grashoff&#x27;s linkage</span><span class="selected-value select-value-color-orange">Disp analysis analytical</span><span class="selected-value select-value-color-blue">Disp analysis graphical</span><span class="selected-value select-value-color-gray">Mobility</span><span class="selected-value select-value-color-yellow">Number Synthesis</span></td><td class="cell-ysX^"><span class="selected-value select-value-color-yellow">📒 Lecture</span></td></tr><tr id="179399c5-1475-4dd1-bad7-14d9392bb625"><td class="cell-title"><a href="https://www.notion.so/Week-3-179399c514754dd1bad714d9392bb625"><span class="icon">📒</span>Week 3</a></td><td class="cell-0#}p"><time>@January 25, 2021 → January 31, 2021</time></td><td class="cell-v&lt;K]"><span class="selected-value select-value-color-orange">Disp analysis analytical</span><span class="selected-value select-value-color-blue">Disp analysis graphical</span><span class="selected-value select-value-color-blue">quick-return ratio</span><span class="selected-value select-value-color-red">transmission angle</span></td><td class="cell-ysX^"><span class="selected-value select-value-color-yellow">📒 Lecture</span></td></tr><tr id="47abc54c-2548-433d-8bd0-130362390cc6"><td class="cell-title"><a href="https://www.notion.so/Assignment-1-47abc54c2548433d8bd0130362390cc6"><span class="icon">📌</span>Assignment 1</a></td><td class="cell-0#}p"><time>@January 28, 2021</time></td><td class="cell-v&lt;K]"></td><td class="cell-ysX^"><span class="selected-value select-value-color-red">📌 Assignment</span></td></tr><tr id="331422e6-8bd6-4216-b209-1f8114a6c72e"><td class="cell-title"><a href="https://www.notion.so/Quiz-1-331422e68bd64216b2091f8114a6c72e"><span class="icon">💯</span>Quiz 1</a></td><td class="cell-0#}p"><time>@February 4, 2021 2:30 PM</time></td><td class="cell-v&lt;K]"></td><td class="cell-ysX^"></td></tr><tr id="80e882ea-2e5f-46a0-8f78-284d8b6586e8"><td class="cell-title"><a href="https://www.notion.so/Week-4-80e882ea2e5f46a08f78284d8b6586e8"><span class="icon">📒</span>Week 4</a></td><td class="cell-0#}p"><time>@January 31, 2021 → February 7, 2021</time></td><td class="cell-v&lt;K]"><span class="selected-value select-value-color-blue">AK theorem</span><span class="selected-value select-value-color-green">IC of rotation</span><span class="selected-value select-value-color-purple">plane motion review</span><span class="selected-value select-value-color-blue">v and a analysis (analytical)</span><span class="selected-value select-value-color-pink">v and a analysis (graphical)</span></td><td class="cell-ysX^"><span class="selected-value select-value-color-yellow">📒 Lecture</span></td></tr><tr id="6d7192d4-1a27-40e2-a6ff-a4992113ac36"><td class="cell-title"><a href="https://www.notion.so/Week-5-6d7192d41a2740e2a6ffa4992113ac36"><span class="icon">📒</span>Week 5</a></td><td class="cell-0#}p"><time>@February 7, 2021 → February 14, 2021</time></td><td class="cell-v&lt;K]"><span class="selected-value select-value-color-blue">synthesis</span><span class="selected-value select-value-color-blue">v and a analysis (analytical)</span><span class="selected-value select-value-color-pink">v and a analysis (graphical)</span></td><td class="cell-ysX^"><span class="selected-value select-value-color-yellow">📒 Lecture</span></td></tr><tr id="1391b68f-8cf0-4399-8e6d-b35b3cbce215"><td class="cell-title"><a href="https://www.notion.so/Assignment-2-1391b68f8cf043998e6db35b3cbce215"><span class="icon">📌</span>Assignment 2</a></td><td class="cell-0#}p"><time>@February 14, 2021</time></td><td class="cell-v&lt;K]"></td><td class="cell-ysX^"><span class="selected-value select-value-color-red">📌 Assignment</span></td></tr><tr id="03504aa4-e59d-4406-be6d-e978e8fbc2c5"><td class="cell-title"><a href="https://www.notion.so/Week-6-03504aa4e59d4406be6de978e8fbc2c5"><span class="icon">📒</span> Week 6</a></td><td class="cell-0#}p"><time>@February 14, 2021 → February 21, 2021</time></td><td class="cell-v&lt;K]"><span class="selected-value select-value-color-blue">synthesis</span></td><td class="cell-ysX^"><span class="selected-value select-value-color-yellow">📒 Lecture</span></td></tr><tr id="fd1bf579-ad79-49e0-b711-8920af84a93f"><td class="cell-title"><a href="https://www.notion.so/Quiz-2-fd1bf579ad7949e0b7118920af84a93f"><span class="icon">💯</span>Quiz 2</a></td><td class="cell-0#}p"><time>@February 15, 2021 12:00 PM</time></td><td class="cell-v&lt;K]"></td><td class="cell-ysX^"><span class="selected-value select-value-color-blue">🔍 Exam</span></td></tr><tr id="a297c913-71b9-40d5-a96e-42fc79ae56d7"><td class="cell-title"><a href="https://www.notion.so/Assignment-3-a297c91371b940d5a96e42fc79ae56d7"><span class="icon">📌</span>Assignment 3</a></td><td class="cell-0#}p"><time>@February 25, 2021</time></td><td class="cell-v&lt;K]"></td><td class="cell-ysX^"><span class="selected-value select-value-color-red">📌 Assignment</span></td></tr><tr id="63acd5c7-f329-4de8-8c71-99dd7f095c0a"><td class="cell-title"><a href="https://www.notion.so/Week-7-63acd5c7f3294de88c7199dd7f095c0a"><span class="icon">📒</span>Week 7</a></td><td class="cell-0#}p"><time>@February 21, 2021 → February 28, 2021</time></td><td class="cell-v&lt;K]"><span class="selected-value select-value-color-orange">cams</span></td><td class="cell-ysX^"><span class="selected-value select-value-color-yellow">📒 Lecture</span></td></tr><tr id="293f79e2-00b0-4690-bb94-a1df9db7de25"><td class="cell-title"><a href="https://www.notion.so/Project-293f79e200b04690bb94a1df9db7de25"><span class="icon">💯</span>Project</a></td><td class="cell-0#}p"><time>@March 3, 2021</time></td><td class="cell-v&lt;K]"></td><td class="cell-ysX^"><span class="selected-value select-value-color-pink">⚙️Project</span></td></tr><tr id="c99f43a9-a80f-4287-b3c9-ba9f0bdf647f"><td class="cell-title"><a href="https://www.notion.so/Quiz-3-c99f43a9a80f4287b3c9ba9f0bdf647f"><span class="icon">💯</span>Quiz 3</a></td><td class="cell-0#}p"><time>@March 4, 2021 2:30 PM</time></td><td class="cell-v&lt;K]"><span class="selected-value select-value-color-orange">cams</span><span class="selected-value select-value-color-brown">gears</span><span class="selected-value select-value-color-blue">synthesis</span></td><td class="cell-ysX^"><span class="selected-value select-value-color-blue">🔍 Exam</span></td></tr><tr id="145666b8-bd72-4992-8f37-d1e0669d91a6"><td class="cell-title"><a href="https://www.notion.so/Week-8-145666b8bd7249928f37d1e0669d91a6"><span class="icon">📒</span>Week 8</a></td><td class="cell-0#}p"><time>@February 28, 2021 → March 7, 2021</time></td><td class="cell-v&lt;K]"><span class="selected-value select-value-color-brown">gears</span></td><td class="cell-ysX^"><span class="selected-value select-value-color-yellow">📒 Lecture</span></td></tr><tr id="443a2902-091e-4dd3-93cd-d5489807b925"><td class="cell-title"><a href="https://www.notion.so/443a2902091e4dd393cdd5489807b925">Untitled</a></td><td class="cell-0#}p"></td><td class="cell-v&lt;K]"></td><td class="cell-ysX^"></td></tr><tr id="fe22015c-6152-4e58-8216-a5b3ffe031f3"><td class="cell-title"><a href="https://www.notion.so/Assignment-fe22015c61524e588216a5b3ffe031f3"><span class="icon">✏️</span>Assignment</a></td><td class="cell-0#}p"></td><td class="cell-v&lt;K]"></td><td class="cell-ysX^"></td></tr><tr id="8d48ff1b-d780-4e40-9f74-5b5848d4a69b"><td class="cell-title"><a href="https://www.notion.so/Lesson-8d48ff1bd7804e409f745b5848d4a69b"><span class="icon">📒</span>Lesson</a></td><td class="cell-0#}p"></td><td class="cell-v&lt;K]"></td><td class="cell-ysX^"><span class="selected-value select-value-color-yellow">📒 Lecture</span></td></tr><tr id="f8c4d77a-a8da-46cc-a4dc-932904a9d5fa"><td class="cell-title"><a href="https://www.notion.so/Exam-f8c4d77aa8da46cca4dc932904a9d5fa"><span class="icon">📌</span>Exam</a></td><td class="cell-0#}p"></td><td class="cell-v&lt;K]"></td><td class="cell-ysX^"></td></tr></tbody></table></div><h1 id="67948691-260e-4b80-9d3c-45054e462af4" class="block-color-red_background"><strong>Assignments </strong></h1><h3 id="f4d57318-67b7-4c0b-b08d-b57f43f8603f" class=""><strong>Submission</strong></h3><p id="c5d8af28-b1e7-49c9-a2d1-a5afce15979b" class="">All assignments are due in lecture (due dates are listed on the schedule)</p><h3 id="0a6fd907-0d7d-4613-9b62-b47fb0c1fa8b" class=""><strong>Late Assignments</strong></h3><p id="456d6ed1-31be-4b71-b892-9f35789de576" class="">Late work will not be awarded any points. If foreseen or unforeseen circumstances prevent you from completing an assignment on time, you may request an extension. Extensions must be requested in advance of the due date. </p><h3 id="a5cd8854-2285-4425-bf1c-983a2f740b6e" class="">Plagiarism</h3><p id="a7995b66-627d-4d81-b6cb-7caff12d9a2c" class="">Presenting someone else’s ideas as your own, either verbatim or recast in your own words – is a serious academic offense with serious consequences. This will reflect in grades awarded as well.</p><h1 id="177b3ea6-8971-478c-bfd7-ca14f3df377b" class="block-color-blue_background">Tests and Exam</h1><p id="f187633e-d0a5-4d0f-ac07-e9c0b45679d8" class="">Details will be updated soon.</p><h1 id="d560d5f7-8168-4f87-9269-3965ac058572" class="">📚 Readings and resources</h1><div id="ea3c7872-0ad2-4c9a-8c6d-68d8ffb08823" class="collection-content"><h4 class="collection-title">Reference books</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Name</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Author</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Publisher</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesNumber"><path d="M4.46191,0 C3.8667,0 3.38428,0.482422 3.38428,1.07751 L3.38428,3.38425 L1.07764,3.38425 C0.482422,3.38425 0,3.86667 0,4.46179 C0,5.05688 0.482422,5.53931 1.07764,5.53931 L3.38428,5.53931 L3.38428,8.46063 L1.07764,8.46063 C0.482422,8.46063 0,8.94308 0,9.53818 C0,10.1333 0.482422,10.6157 1.07764,10.6157 L3.38428,10.6157 L3.38428,12.9224 C3.38428,13.5175 3.8667,13.9999 4.46191,13.9999 C5.05664,13.9999 5.53906,13.5175 5.53906,12.9224 L5.53906,10.6157 L8.46045,10.6157 L8.46045,12.9224 C8.46045,13.5175 8.94287,13.9999 9.53809,13.9999 C10.1333,13.9999 10.6157,13.5175 10.6157,12.9224 L10.6157,10.6157 L12.9224,10.6157 C13.5176,10.6157 14,10.1333 14,9.53818 C14,8.94308 13.5176,8.46063 12.9224,8.46063 L10.6157,8.46063 L10.6157,5.53931 L12.9224,5.53931 C13.5176,5.53931 14,5.05688 14,4.46179 C14,3.86667 13.5176,3.38425 12.9224,3.38425 L10.6157,3.38425 L10.6157,1.07751 C10.6157,0.482422 10.1333,0 9.53809,0 C8.94287,0 8.46045,0.482422 8.46045,1.07751 L8.46045,3.38425 L5.53906,3.38425 L5.53906,1.07751 C5.53906,0.482422 5.05664,0 4.46191,0 Z M5.53906,8.46063 L5.53906,5.53931 L8.46045,5.53931 L8.46045,8.46063 L5.53906,8.46063 Z"></path></svg></span>Edition</th></tr></thead><tbody><tr id="6cf13abd-4f20-413a-886d-e16a33ebd67d"><td class="cell-title"><a href="https://www.notion.so/Theory-of-mechanisms-and-machines-6cf13abd4f20413a886de16a33ebd67d">Theory of mechanisms and machines</a></td><td class="cell-F{)Z">John J. Uicker, Gordon R. Pennock, Joseph E.Shigley</td><td class="cell-hrFj">Oxford University Press</td><td class="cell-cl[P"></td></tr><tr id="f9b3a386-efe0-4ef3-b719-70c77bad9a91"><td class="cell-title"><a href="https://www.notion.so/Theory-of-mechanisms-and-machines-f9b3a386efe04ef3b71970c77bad9a91"> Theory of mechanisms and machines</a></td><td class="cell-F{)Z">Amitabha Ghosh, Asok Kumar Mallik</td><td class="cell-hrFj">East-West Press Private Limited</td><td class="cell-cl[P">3</td></tr></tbody></table></div><div id="9e815d68-b2c8-4d99-852c-c1b63f0d81ee" class="collection-content"><h4 class="collection-title">Softwares</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesTitle"><path d="M7.73943662,8.6971831 C7.77640845,8.7834507 7.81338028,8.8943662 7.81338028,9.00528169 C7.81338028,9.49823944 7.40669014,9.89260563 6.91373239,9.89260563 C6.53169014,9.89260563 6.19894366,9.64612676 6.08802817,9.30105634 L5.75528169,8.33978873 L2.05809859,8.33978873 L1.72535211,9.30105634 C1.61443662,9.64612676 1.2693662,9.89260563 0.887323944,9.89260563 C0.394366197,9.89260563 0,9.49823944 0,9.00528169 C0,8.8943662 0.0246478873,8.7834507 0.0616197183,8.6971831 L2.46478873,2.48591549 C2.68661972,1.90669014 3.24119718,1.5 3.90669014,1.5 C4.55985915,1.5 5.12676056,1.90669014 5.34859155,2.48591549 L7.73943662,8.6971831 Z M2.60035211,6.82394366 L5.21302817,6.82394366 L3.90669014,3.10211268 L2.60035211,6.82394366 Z M11.3996479,3.70598592 C12.7552817,3.70598592 14,4.24823944 14,5.96126761 L14,9.07922535 C14,9.52288732 13.6549296,9.89260563 13.2112676,9.89260563 C12.8169014,9.89260563 12.471831,9.59683099 12.4225352,9.19014085 C12.028169,9.6584507 11.3257042,9.95422535 10.5492958,9.95422535 C9.60035211,9.95422535 8.47887324,9.31338028 8.47887324,7.98239437 C8.47887324,6.58978873 9.60035211,6.08450704 10.5492958,6.08450704 C11.3380282,6.08450704 12.040493,6.33098592 12.4348592,6.81161972 L12.4348592,5.98591549 C12.4348592,5.38204225 11.9172535,4.98767606 11.1285211,4.98767606 C10.6602113,4.98767606 10.2411972,5.11091549 9.80985915,5.38204225 C9.72359155,5.43133803 9.61267606,5.46830986 9.50176056,5.46830986 C9.18133803,5.46830986 8.91021127,5.1971831 8.91021127,4.86443662 C8.91021127,4.64260563 9.0334507,4.44542254 9.19366197,4.34683099 C9.87147887,3.90316901 10.6232394,3.70598592 11.3996479,3.70598592 Z M11.1778169,8.8943662 C11.6830986,8.8943662 12.1760563,8.72183099 12.4348592,8.37676056 L12.4348592,7.63732394 C12.1760563,7.29225352 11.6830986,7.11971831 11.1778169,7.11971831 C10.5616197,7.11971831 10.056338,7.45246479 10.056338,8.0193662 C10.056338,8.57394366 10.5616197,8.8943662 11.1778169,8.8943662 Z M0.65625,11.125 L13.34375,11.125 C13.7061869,11.125 14,11.4188131 14,11.78125 C14,12.1436869 13.7061869,12.4375 13.34375,12.4375 L0.65625,12.4375 C0.293813133,12.4375 4.43857149e-17,12.1436869 0,11.78125 C-4.43857149e-17,11.4188131 0.293813133,11.125 0.65625,11.125 Z"></path></svg></span>Name</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesText"><path d="M7,4.56818 C7,4.29204 6.77614,4.06818 6.5,4.06818 L0.5,4.06818 C0.223858,4.06818 0,4.29204 0,4.56818 L0,5.61364 C0,5.88978 0.223858,6.11364 0.5,6.11364 L6.5,6.11364 C6.77614,6.11364 7,5.88978 7,5.61364 L7,4.56818 Z M0.5,1 C0.223858,1 0,1.223858 0,1.5 L0,2.54545 C0,2.8216 0.223858,3.04545 0.5,3.04545 L12.5,3.04545 C12.7761,3.04545 13,2.8216 13,2.54545 L13,1.5 C13,1.223858 12.7761,1 12.5,1 L0.5,1 Z M0,8.68182 C0,8.95796 0.223858,9.18182 0.5,9.18182 L11.5,9.18182 C11.7761,9.18182 12,8.95796 12,8.68182 L12,7.63636 C12,7.36022 11.7761,7.13636 11.5,7.13636 L0.5,7.13636 C0.223858,7.13636 0,7.36022 0,7.63636 L0,8.68182 Z M0,11.75 C0,12.0261 0.223858,12.25 0.5,12.25 L9.5,12.25 C9.77614,12.25 10,12.0261 10,11.75 L10,10.70455 C10,10.4284 9.77614,10.20455 9.5,10.20455 L0.5,10.20455 C0.223858,10.20455 0,10.4284 0,10.70455 L0,11.75 Z"></path></svg></span>Website</th><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>Details</th></tr></thead><tbody><tr id="f4ccf094-b40c-4b80-9d34-1f620968d4bd"><td class="cell-title"><a href="https://www.notion.so/Geogebra-f4ccf094b40c4b809d341f620968d4bd">Geogebra</a></td><td class="cell-F{)Z"><a href="https://www.geogebra.org/">https://www.geogebra.org/</a></td><td class="cell-hrFj"><span class="selected-value select-value-color-red">software</span></td></tr><tr id="30a5eb48-f54f-455b-b15e-93e5309539f8"><td class="cell-title"><a href="https://www.notion.so/KLN-Mechanisms-30a5eb48f54f455bb15e93e5309539f8">KLN Mechanisms</a></td><td class="cell-F{)Z"><a href="https://mecheng.iisc.ac.in/m2d2/">https://mecheng.iisc.ac.in/m2d2/</a></td><td class="cell-hrFj"></td></tr></tbody></table></div><p id="8cb6ce40-8398-4e3f-b13e-a5108200dd3d" class="">
+</p><p id="34bc1f3f-aed8-4dfa-96e7-c7e5999f8d75" class="">
+</p></div></article></body></html>
